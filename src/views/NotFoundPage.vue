@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>회원가입 페이지</h1>
+		<h2>404 Page</h2>
 	</div>
 </template>
 

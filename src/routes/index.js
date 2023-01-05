@@ -1,19 +1,27 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import SignupPage from '@/views/LoginPage.vue';
-import LoginPage from '@/views/SignupPage.vue';
+// import SignupPage from '@/views/SignupPage.vue';
+// import LoginPage from '@/views/LoginPage.vue';
 
 Vue.use(VueRouter);
 
 export default new VueRouter({
 	routes: [
 		{
-			path: '/login',
-			component: LoginPage,
+			path: '/',
+			redirect: '/login',
 		},
 		{
-			path: 'signUp',
-			component: SignupPage,
+			path: '/login',
+			component: () => import('@/views/LoginPage.vue'),
+		},
+		{
+			path: '/signup',
+			component: () => import('@/views/SignupPage.vue'),
+		},
+		{
+			path: '*',
+			component: () => import('@/views/NotFoundPage.vue'),
 		},
 	],
 });
