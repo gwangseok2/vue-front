@@ -1,60 +1,18 @@
 <template>
 	<div>
-		<h1>회원가입 페이지</h1>
-		<input type="name" placeholder="이름을 입력 해주세요." v-model="userName" />
-		<input type="password" placeholder="비밀번호를 입력 해주세요." v-model="userPassword" />
-		<button type="button" @click="checkData">회원 가입 쿠쿠루</button>
+		<SignupForm></SignupForm>
 	</div>
 </template>
 
 <script>
+import SignupForm from '@/components/SignupForm.vue';
 export default {
+	components: { SignupForm },
 	data() {
-		return {
-			userName: '',
-			userPassword: '',
-		};
+		return {};
 	},
-	methods: {
-		checkData() {
-			if (this.userName.length < 2 || this.userPassword.length < 7) {
-				alert('입력을 제대로 해주세요.');
-				return;
-			} else {
-				this.sendSignupData();
-			}
-		},
-
-		sendSignupData() {
-			const sendObject = {
-				userName: this.userName.trim(),
-				userPassword: this.userPassword.trim(),
-			};
-			console.log(sendObject, 'api 데이터');
-		},
-	},
+	methods: {},
 };
 </script>
 
-<style scoped>
-* {
-	margin: 0;
-	padding: 0;
-}
-div {
-	padding: 20px;
-}
-input {
-	width: 100%;
-	height: 50px;
-	border: 1px solid #ccc;
-	margin: 5px auto;
-	box-sizing: border-box;
-	padding: 10px;
-	border-radius: 8px;
-}
-button {
-	display: block;
-	margin: 0 auto;
-}
-</style>
+<style scoped></style>
