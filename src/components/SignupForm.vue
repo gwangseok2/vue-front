@@ -1,9 +1,21 @@
 <template>
-	<div>
+	<div class="signup-wrapper">
 		<h1>회원가입 페이지</h1>
-		<input type="name" placeholder="이름을 입력 해주세요." v-model="userName" />
-		<input type="password" placeholder="비밀번호를 입력 해주세요." v-model="userPassword" />
-		<button type="button" @click="checkData">회원 가입 쿠쿠루</button>
+		<form>
+			<div>
+				<lable for="user-name">id</lable>
+				<input id="user-name" type="name" placeholder="이름을 입력 해주세요." v-model="userName" />
+			</div>
+			<div>
+				<lable for="user-password">pw</lable>
+				<input id="user-password" type="password" placeholder="비밀번호를 입력 해주세요." v-model="userPassword" />
+			</div>
+			<div>
+				<lable for="user-nickname">nickname</lable>
+				<input id="user-nickname" type="text" placeholder="닉네임을 입력 해주세요." v-model="userName" />
+			</div>
+			<button type="button" @click="checkData">회원 가입 쿠쿠루</button>
+		</form>
 	</div>
 </template>
 
@@ -41,7 +53,7 @@ export default {
 	margin: 0;
 	padding: 0;
 }
-div {
+.signup-wrapper {
 	padding: 20px;
 }
 input {
