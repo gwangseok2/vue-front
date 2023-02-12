@@ -14,6 +14,7 @@
 				<label for="user-nickname">별명</label>
 				<input id="user-nickname" type="text" placeholder="별명을 입력 해주세요." v-model="userNickname" />
 			</div>
+			<p v-if="logmessage">{{ logmessage }}</p>
 			<button type="submit">회원 가입 쿠쿠루</button>
 		</form>
 	</div>
@@ -27,11 +28,13 @@ export default {
 			userName: '',
 			userPassword: '',
 			userNickname: '',
+			logmessage: '',
 		};
 	},
 	methods: {
 		checkData() {
 			if (this.userName.length < 2 || this.userPassword.length < 7 || this.userNickname.length < 2) {
+				this.logmessage = '';
 				alert('입력을 제대로 해주세요.');
 				return;
 			} else {
@@ -48,7 +51,7 @@ export default {
 			const response = await registerUser(sendObject);
 			console.log(response);
 			if (response.status === 200) {
-				alert(`${response.data.username}님 회원가입 성공`);
+				this.logmessage = `${response.data.username}님 회원가입 성공`;
 				this.clearForm();
 			} else {
 				alert('이미 아이디가 존재합니다');
