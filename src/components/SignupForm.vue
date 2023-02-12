@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { registerUser } from '@/api/index';
 export default {
 	data() {
 		return {
@@ -38,13 +39,27 @@ export default {
 			}
 		},
 
-		sendSignupData() {
+		async sendSignupData() {
 			const sendObject = {
-				userName: this.userName.trim(),
-				userPassword: this.userPassword.trim(),
-				userNickname: this.userNickname.trim(),
+				username: this.userName.trim(),
+				password: this.userPassword.trim(),
+				nickname: this.userNickname.trim(),
 			};
-			console.log(sendObject, 'api 데이터');
+			const response = await registerUser(sendObject);
+			console.log(response);
+			if (response.status === 200) {
+				alert(`${response.data.username}님 회원가입 성공`);
+				this.clearForm();
+			} else {
+				alert('이미 아이디가 존재합니다');
+				this.clearForm();
+			}
+		},
+
+		clearForm() {
+			this.userName = '';
+			this.userPassword = '';
+			this.userNickname = '';
 		},
 	},
 };
