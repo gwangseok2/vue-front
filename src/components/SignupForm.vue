@@ -48,13 +48,17 @@ export default {
 				password: this.userPassword.trim(),
 				nickname: this.userNickname.trim(),
 			};
-			const response = await registerUser(sendObject);
-			console.log(response);
-			if (response.status === 200) {
-				this.logmessage = `${response.data.username}님 회원가입 성공`;
-				this.clearForm();
-			} else {
-				alert('이미 아이디가 존재합니다');
+			// const { data, status } = await registerUser(sendObject);
+			try {
+				const { data, status } = await registerUser(sendObject);
+				console.log(data, status);
+				if (status === 200) {
+					this.logmessage = `${data.username}님 회원가입 성공`;
+					this.clearForm();
+				}
+			} catch (error) {
+				console.log(error);
+				alert(`${error.response.status}에러 이미 아이디가 존재합니다`);
 				this.clearForm();
 			}
 		},
