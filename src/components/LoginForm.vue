@@ -1,7 +1,7 @@
 <template>
 	<div class="login-wrapper">
 		<h1>로그인 페이지</h1>
-		<form @submit="loginUser">
+		<form @submit.prevent="loginUser">
 			<div class="row-item">
 				<label for="user-name">ID</label>
 				<input id="user-name" type="name" placeholder="아이디를 입력 해주세요." v-model="id" />
@@ -11,6 +11,7 @@
 				<input id="user-password" type="password" placeholder="비밀번호를 입력 해주세요." autoComplete="on" v-model="password" />
 			</div>
 			<button type="submit">로그인</button>
+			<p v-if="logmessage">{{ logmessage }}님 환영합니다</p>
 		</form>
 	</div>
 </template>
@@ -22,11 +23,27 @@ export default {
 		return {
 			id: '',
 			password: '',
+			logmessage: '',
 		};
 	},
 	methods: {
-		loginUser() {
-			loginUser();
+		async loginUser() {
+			if (this.id.length < 2 || this.password.length < 2) {
+				alert('빈값 확인');
+			} else {
+				const userData = {
+					username: this.id,
+					password: this.password,
+				};
+				const { data } = await loginUser(userData);
+				this.logmessage = data.user.nickname;
+				this.clearForm();
+			}
+		},
+
+		clearForm() {
+			this.id = '';
+			this.password = '';
 		},
 	},
 };
