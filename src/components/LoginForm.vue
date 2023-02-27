@@ -10,7 +10,7 @@
 				<label for="user-password">PW</label>
 				<input id="user-password" type="password" placeholder="비밀번호를 입력 해주세요." autoComplete="on" v-model="password" />
 			</div>
-			<button type="submit">로그인</button>
+			<button :class="{ active: usernameValid && passwordValid }" :disabled="!passwordValid || usernameValid" type="submit">로그인</button>
 			<p v-if="logmessage">{{ logmessage }}</p>
 		</form>
 	</div>
@@ -18,7 +18,7 @@
 
 <script>
 import { loginUser } from '@/api/index';
-import { validateEmail } from '@/utill/vaild';
+import { validateEmail, validPassword } from '@/utill/vaild';
 export default {
 	data() {
 		return {
@@ -31,21 +31,20 @@ export default {
 		usernameValid() {
 			return validateEmail(this.id);
 		},
+		passwordValid() {
+			return validPassword(this.password);
+		},
 	},
 	methods: {
 		async loginUser() {
 			try {
-				if (this.id.length < 2 || this.password.length < 2) {
-					alert('빈값 확인');
-				} else {
-					const userData = {
-						username: this.id,
-						password: this.password,
-					};
-					const { data } = await loginUser(userData);
-					this.logmessage = `${data.user.nickname}님 환영합니다.`;
-					this.clearForm();
-				}
+				const userData = {
+					username: this.id,
+					password: this.password,
+				};
+				const { data } = await loginUser(userData);
+				this.logmessage = `${data.user.nickname}님 환영합니다.`;
+				this.clearForm();
 			} catch (error) {
 				this.logmessage = error.response.data;
 			}
@@ -89,11 +88,15 @@ button[type='submit'] {
 	height: 50px;
 	outline: none;
 	border: none;
-	background-color: #593af8;
+	background-color: #ccc;
 	border-radius: 8px;
-	color: #fff;
+	color: #111;
 	font-size: 14px;
 	font-weight: bold;
 	margin: 20px auto 0;
+}
+button[type='submit'].active {
+	color: #fff;
+	background-color: #593af8;
 }
 </style>
