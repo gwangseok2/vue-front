@@ -14,29 +14,4 @@ export default {
 };
 </script>
 
-<style>
-* {
-	margin: 0;
-	padding: 0;
-}
-a {
-	text-decoration: none;
-	color: inherit;
-	font-size: 28px;
-	font-weight: bold;
-	display: block;
-	width: 100%;
-	text-align: center;
-}
-a:hover {
-	opacity: 0.5;
-}
-.common-header {
-	height: 80px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	color: #fff;
-	background-color: #593af8;
-}
-</style>
+<style></style>

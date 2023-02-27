@@ -10,7 +10,7 @@
 				<label for="user-password">PW</label>
 				<input id="user-password" type="password" placeholder="비밀번호를 입력 해주세요." autoComplete="on" v-model="password" />
 			</div>
-			<button :class="{ active: usernameValid && passwordValid }" :disabled="!passwordValid || usernameValid" type="submit">로그인</button>
+			<button :class="{ active: useremailValid && passwordValid }" :disabled="!passwordValid || useremailValid" type="submit">로그인</button>
 			<p v-if="logmessage">{{ logmessage }}</p>
 		</form>
 	</div>
@@ -28,7 +28,7 @@ export default {
 		};
 	},
 	computed: {
-		usernameValid() {
+		useremailValid() {
 			return validateEmail(this.id);
 		},
 		passwordValid() {

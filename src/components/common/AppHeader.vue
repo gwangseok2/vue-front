@@ -10,8 +10,34 @@ export default {};
 </script>
 
 <style scoped>
+* {
+	margin: 0;
+	padding: 0;
+}
 ul,
 ol {
 	list-style: none;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+	font-size: 28px;
+	font-weight: bold;
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+.common-header {
+	height: 80px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #593af8;
+}
+.common-header a {
+	color: #111;
+}
+.common-header .router-link-active {
+	color: #fff;
 }
 </style>
