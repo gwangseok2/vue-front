@@ -5,6 +5,7 @@
 			<div class="row-item">
 				<label for="user-name">ID</label>
 				<input id="user-name" type="name" placeholder="이름을 입력 해주세요." v-model="userName" />
+				<p v-if="!useremailValid && this.userName.length > 0" class="error-message">이메일 형식으로 입력해주세요.</p>
 			</div>
 			<div class="row-item">
 				<label for="user-password">PW</label>
@@ -15,7 +16,9 @@
 				<input id="user-nickname" type="text" placeholder="별명을 입력 해주세요." v-model="userNickname" />
 			</div>
 			<p v-if="logmessage">{{ logmessage }}</p>
-			<button :class="{ active: useremailValid && passwordValid }" :disabled="!passwordValid || !useremailValid" type="submit">회원 가입 쿠쿠루</button>
+			<button :class="{ active: useremailValid && passwordValid && userNickname.length > 0 }" :disabled="!passwordValid || !useremailValid || !userNickname.length > 0" type="submit">
+				회원 가입 쿠쿠루
+			</button>
 		</form>
 	</div>
 </template>
@@ -99,6 +102,12 @@ h1 {
 }
 .row-item {
 	margin-bottom: 10px;
+}
+
+.error-message {
+	color: red;
+	font-size: 12px;
+	font-weight: 500;
 }
 
 input {
