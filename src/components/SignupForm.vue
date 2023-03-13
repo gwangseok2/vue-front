@@ -15,13 +15,14 @@
 				<input id="user-nickname" type="text" placeholder="별명을 입력 해주세요." v-model="userNickname" />
 			</div>
 			<p v-if="logmessage">{{ logmessage }}</p>
-			<button type="submit">회원 가입 쿠쿠루</button>
+			<button :class="{ active: useremailValid && passwordValid }" :disabled="!passwordValid || !useremailValid" type="submit">회원 가입 쿠쿠루</button>
 		</form>
 	</div>
 </template>
 
 <script>
 import { registerUser } from '@/api/index';
+import { validateEmail, validPassword } from '@/utill/vaild';
 export default {
 	data() {
 		return {
@@ -31,6 +32,16 @@ export default {
 			logmessage: '',
 		};
 	},
+
+	computed: {
+		useremailValid() {
+			return validateEmail(this.userName);
+		},
+		passwordValid() {
+			return validPassword(this.userPassword);
+		},
+	},
+
 	methods: {
 		checkData() {
 			if (this.userName.length < 2 || this.userPassword.length < 7 || this.userNickname.length < 2) {
@@ -105,11 +116,15 @@ button[type='submit'] {
 	height: 50px;
 	outline: none;
 	border: none;
-	background-color: #593af8;
+	background-color: #ccc;
 	border-radius: 8px;
-	color: #fff;
+	color: #111;
 	font-size: 14px;
 	font-weight: bold;
 	margin: 20px auto 0;
+}
+button[type='submit'].active {
+	color: #fff;
+	background-color: #593af8;
 }
 </style>
