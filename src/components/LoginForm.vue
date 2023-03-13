@@ -10,7 +10,7 @@
 				<label for="user-password">PW</label>
 				<input id="user-password" type="password" placeholder="비밀번호를 입력 해주세요." autoComplete="on" v-model="password" />
 			</div>
-			<button :class="{ active: useremailValid && passwordValid }" :disabled="!passwordValid || useremailValid" type="submit">로그인</button>
+			<button :class="{ active: useremailValid && passwordValid }" :disabled="!passwordValid || !useremailValid" type="submit">로그인</button>
 			<p v-if="logmessage">{{ logmessage }}</p>
 		</form>
 	</div>
@@ -38,6 +38,7 @@ export default {
 	methods: {
 		async loginUser() {
 			try {
+				console.log(this.useremailValid, this.passwordValid);
 				const userData = {
 					username: this.id,
 					password: this.password,
@@ -67,6 +68,9 @@ h1 {
 	margin-bottom: 50px;
 }
 .login-wrapper {
+	box-sizing: border-box;
+	max-width: 375px;
+	margin: 0 auto;
 	padding: 20px;
 }
 .row-item {

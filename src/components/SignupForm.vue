@@ -81,6 +81,9 @@ h1 {
 	margin-bottom: 50px;
 }
 .signup-wrapper {
+	box-sizing: border-box;
+	max-width: 375px;
+	margin: 0 auto;
 	padding: 20px;
 }
 .row-item {
