@@ -8,9 +8,13 @@ Vue.use(VueRouter);
 export default new VueRouter({
 	mode: 'history',
 	routes: [
+		// {
+		// 	path: '/',
+		// 	redirect: '/login',
+		// },
 		{
 			path: '/',
-			redirect: '/login',
+			component: () => import('@/views/MainPage.vue'),
 		},
 		{
 			path: '/login',
