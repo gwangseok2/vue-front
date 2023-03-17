@@ -44,8 +44,13 @@ export default {
 					password: this.password,
 				};
 				const { data } = await loginUser(userData);
-				this.logmessage = `${data.user.nickname}님 환영합니다.`;
-				this.clearForm();
+
+				// 메인으로 이동
+				console.log(data.user.id);
+				this.$router.push('/');
+
+				// this.logmessage = `${data.user.nickname}님 환영합니다.`;
+				// this.clearForm();
 			} catch (error) {
 				this.logmessage = error.response.data;
 			}
