@@ -1,13 +1,32 @@
 <template>
 	<header class="common-header">
 		<router-link to="/">TIL</router-link>
-		<router-link to="/login">로그인</router-link> |
-		<router-link to="/signup">회원가입</router-link>
+		<div class="nav-wrapper">
+			<template v-if="isUserLogin">
+				<span>{{ $store.state.username }}님</span>
+				<a href="javascript:;" @click="logoutUser">로그아웃</a>
+			</template>
+			<template v-else>
+				<router-link v-if="!$store.state.username" to="/login">로그인</router-link>
+				<router-link to="/signup">회원가입</router-link>
+			</template>
+		</div>
 	</header>
 </template>
 
 <script>
-export default {};
+export default {
+	computed: {
+		isUserLogin() {
+			return this.$store.getters.isLogin;
+		},
+	},
+	methods: {
+		logoutUser() {
+			this.$store.commit('clearUsername');
+		},
+	},
+};
 </script>
 
 <style scoped>
@@ -31,14 +50,35 @@ a {
 .common-header {
 	height: 80px;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
 	background-color: #593af8;
 }
-.common-header a {
-	color: #111;
+.nav-wrapper {
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+	width: 40%;
+	justify-content: space-between;
+	gap: 20px;
 }
-.common-header .router-link-active {
+.common-header a {
 	color: #fff;
+}
+/* .common-header .router-link-active {
+	color: #fff;
+} */
+.common-header > a:first-child {
+	width: 22%;
+	text-align: left;
+	box-sizing: border-box;
+	padding-left: 30px;
+}
+span {
+	display: block;
+	font-size: 28px;
+	text-align: center;
+	font-weight: bold;
+	color: #fff;
+	flex-shrink: 0;
 }
 </style>

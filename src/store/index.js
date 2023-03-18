@@ -8,10 +8,21 @@ export default new Vuex.Store({
 		username: '',
 	},
 
+	getters: {
+		isLogin(state) {
+			// 로그인 되면 트루를
+			return state.username !== '';
+		},
+	},
+
 	mutations: {
 		setUsername(state, data) {
 			console.log(data);
 			state.username = data;
+		},
+
+		clearUsername(state) {
+			state.username = '';
 		},
 	},
 });
