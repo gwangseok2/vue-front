@@ -57,7 +57,6 @@ a {
 	display: flex;
 	align-items: center;
 	margin-left: auto;
-	width: 40%;
 	justify-content: space-between;
 	gap: 20px;
 }
