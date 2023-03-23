@@ -1,30 +1,27 @@
 <template>
 	<div class="list-container">
 		<h1>메인 페이지</h1>
-		<ul>
+		<LoadingSpinner v-if="isLoading" />
+		<ul v-else>
 			<PostListItem v-for="item in postItems" :key="item._id" :item="item" />
 		</ul>
-		<!-- <ul>
-			<li v-for="item in postItems" :key="item._id">
-				<div class="post-title">{{ item.title }}</div>
-				<div class="post-contents">{{ item.contents }}</div>
-				<div class="post-time">{{ item.createdAt }}</div>
-			</li>
-		</ul> -->
 	</div>
 </template>
 
 <script>
 import PostListItem from '@/components/posts/PostListItem.vue';
+import LoadingSpinner from '@/components/common/LoadingSpinner.vue';
 import { fetchPosts } from '@/api/index';
 export default {
 	components: {
 		PostListItem,
+		LoadingSpinner,
 	},
 
 	data() {
 		return {
 			postItems: [],
+			isLoading: false,
 		};
 	},
 
@@ -36,7 +33,9 @@ export default {
 
 	methods: {
 		async fetchData() {
+			this.isLoading = true;
 			const { data } = await fetchPosts();
+			this.isLoading = false;
 			console.log(data);
 			this.postItems = data.posts;
 		},
