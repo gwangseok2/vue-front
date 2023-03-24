@@ -18,6 +18,7 @@
 export default {
 	computed: {
 		isUserLogin() {
+			// store의 getter isLogin의 true false 값
 			return this.$store.getters.isLogin;
 		},
 	},
