@@ -5,6 +5,7 @@
 		<ul v-else>
 			<PostListItem v-for="item in postItems" :key="item._id" :item="item" />
 		</ul>
+		<router-link to="/add" class="create-button" style="text-decoration: none"> + </router-link>
 	</div>
 </template>
 
@@ -43,7 +44,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 h1 {
 	text-align: center;
 }

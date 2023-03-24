@@ -46,7 +46,6 @@ a {
 	font-size: 28px;
 	font-weight: bold;
 	display: block;
-	width: 100%;
 	text-align: center;
 }
 .common-header {
@@ -61,6 +60,8 @@ a {
 	margin-left: auto;
 	justify-content: space-between;
 	gap: 20px;
+	box-sizing: border-box;
+	padding-right: 10px;
 }
 .common-header a {
 	color: #fff;
