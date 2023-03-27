@@ -28,11 +28,15 @@ export default {
 	},
 	methods: {
 		async submitForm() {
-			const { data } = await createPost({
-				title: this.title,
-				contents: this.contents,
-			});
-			console.log('submit', data);
+			try {
+				const { data } = await createPost({
+					title: this.title,
+					contents: this.contents,
+				});
+				console.log('submit', data);
+			} catch (error) {
+				console.log(error.response.data.message);
+			}
 		},
 	},
 };
