@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { registerUser } from '@/api/index';
+import { registerUser } from '@/api/auth';
 import { validateEmail, validPassword } from '@/utill/vaild';
 export default {
 	data() {
