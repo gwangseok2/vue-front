@@ -22,7 +22,9 @@
 </template>
 
 <script>
-import { fetchPost } from '@/api/posts';
+import { fetchPost, editPost } from '@/api/posts';
+import bus from '@/utill/bus.js';
+
 export default {
 	data() {
 		return {
@@ -46,7 +48,21 @@ export default {
 	},
 
 	methods: {
-		submitForm() {},
+		async submitForm() {
+			try {
+				const editData = {
+					title: this.title,
+					contents: this.contents,
+				};
+
+				// 이벤트버스
+				bus.$emit('show:toast', `${this.title} was editted`);
+				await editPost(this.$route.params.id, editData);
+				// this.$router.push('/');
+			} catch (e) {
+				console.log(e);
+			}
+		},
 	},
 };
 </script>

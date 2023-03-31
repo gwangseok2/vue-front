@@ -16,9 +16,14 @@ function createPost(data) {
 	return posts.post('', data);
 }
 
+// 학습 노트 데이터 수정
+function editPost(id, data) {
+	return posts.put(id, data);
+}
+
 // 학습 노트 데이터 제거
 function deletePost(id) {
 	return posts.delete(id);
 }
 
-export { fetchPosts, fetchPost, createPost, deletePost };
+export { fetchPosts, fetchPost, createPost, deletePost, editPost };
