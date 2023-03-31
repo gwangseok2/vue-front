@@ -3,7 +3,7 @@
 		<h1>메인 페이지</h1>
 		<LoadingSpinner v-if="isLoading" />
 		<ul v-else>
-			<PostListItem v-for="item in postItems" :key="item._id" :item="item" />
+			<PostListItem v-for="item in postItems" :key="item._id" :item="item" @refresh="fetchData" />
 		</ul>
 		<router-link to="/add" class="create-button" style="text-decoration: none"> + </router-link>
 	</div>

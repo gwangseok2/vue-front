@@ -11,4 +11,9 @@ function createPost(data) {
 	return posts.post('', data);
 }
 
-export { fetchPosts, createPost };
+// 학습 노트 데이터 제거
+function deletePost(id) {
+	return posts.delete(id);
+}
+
+export { fetchPosts, createPost, deletePost };
