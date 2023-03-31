@@ -1,6 +1,6 @@
 <template>
 	<div class="contents">
-		<h1 class="page-header">Create Post</h1>
+		<h1 class="page-header">Edit Post</h1>
 		<div class="form-wrapper">
 			<form class="form" @submit.prevent="submitForm">
 				<div>
@@ -12,7 +12,7 @@
 					<textarea v-model="contents" id="contents" type="text" rows="5" />
 					<p v-if="!isContentsValid" class="validation-text warining">Contents length must be less than 200</p>
 				</div>
-				<button type="submit" class="btn">Create</button>
+				<button type="submit" class="btn">Edit</button>
 			</form>
 			<p class="log">
 				{{ logMessage }}
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { createPost } from '@/api/posts';
+import { fetchPost } from '@/api/posts';
 export default {
 	data() {
 		return {
@@ -32,33 +32,23 @@ export default {
 		};
 	},
 
+	async created() {
+		const id = this.$route.params.id;
+		const { data } = await fetchPost(id);
+		this.title = data.title;
+		this.contents = data.contents;
+	},
+
 	computed: {
 		isContentsValid() {
 			return this.contents.length < 200;
 		},
 	},
+
 	methods: {
-		async submitForm() {
-			try {
-				if (confirm('게시물을 생성하시겠습니까?')) {
-					const { data } = await createPost({
-						title: this.title,
-						contents: this.contents,
-					});
-					console.log('submit', data);
-					this.$router.push('/');
-				}
-			} catch (error) {
-				console.log(error.response.data.message);
-				this.logMessage = error.response.data.message;
-			}
-		},
+		submitForm() {},
 	},
 };
 </script>
 
-<style scoped>
-h1 {
-	text-align: center;
-}
-</style>
+<style></style>

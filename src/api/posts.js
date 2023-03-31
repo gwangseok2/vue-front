@@ -6,6 +6,11 @@ function fetchPosts() {
 	return posts.get('');
 }
 
+// 학습 노트 데이터 1개 조회
+function fetchPost(id) {
+	return posts.get(id);
+}
+
 // 학습 노트 데이터 생성
 function createPost(data) {
 	return posts.post('', data);
@@ -16,4 +21,4 @@ function deletePost(id) {
 	return posts.delete(id);
 }
 
-export { fetchPosts, createPost, deletePost };
+export { fetchPosts, fetchPost, createPost, deletePost };
