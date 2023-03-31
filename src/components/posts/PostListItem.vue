@@ -21,9 +21,12 @@ export default {
 	},
 	methods: {
 		async deleteItem() {
-			const response = await deletePost(this.item._id);
-			this.$emit('refresh');
-			console.log(response, '삭제');
+			const checkRemoveItem = confirm('게시물을 삭제 하시겠습니까?');
+			if (checkRemoveItem) {
+				const response = await deletePost(this.item._id);
+				this.$emit('refresh');
+				console.log(response, '삭제');
+			}
 		},
 	},
 };
