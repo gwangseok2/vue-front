@@ -58,7 +58,7 @@ export default {
 				// 이벤트버스
 				bus.$emit('show:toast', `${this.title} was editted`);
 				await editPost(this.$route.params.id, editData);
-				// this.$router.push('/');
+				this.$router.push('/');
 			} catch (e) {
 				console.log(e);
 			}
