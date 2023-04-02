@@ -1,17 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// import SignupPage from '@/views/SignupPage.vue';
-// import LoginPage from '@/views/LoginPage.vue';
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
 	mode: 'history',
 	routes: [
-		// {
-		// 	path: '/',
-		// 	redirect: '/login',
-		// },
 		{
 			path: '/',
 			component: () => import('@/views/MainPage.vue'),
@@ -38,3 +32,10 @@ export default new VueRouter({
 		},
 	],
 });
+
+router.beforeEach((to, from, next) => {
+	console.log(to, from, next);
+	next();
+});
+
+export default router;
