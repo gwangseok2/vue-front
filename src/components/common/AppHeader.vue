@@ -28,6 +28,7 @@ export default {
 	methods: {
 		logoutUser() {
 			this.$store.commit('clearUsername');
+			this.$store.commit('clearToken');
 			this.$router.go();
 		},
 	},
