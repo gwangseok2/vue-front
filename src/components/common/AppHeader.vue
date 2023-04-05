@@ -1,6 +1,6 @@
 <template>
 	<header class="common-header">
-		<router-link to="/">TIL</router-link>
+		<router-link :to="logoLink">TIL</router-link>
 		<div class="nav-wrapper">
 			<template v-if="isUserLogin">
 				<span>{{ $store.state.username }}님</span>
@@ -20,6 +20,9 @@ export default {
 		isUserLogin() {
 			// store의 getter isLogin의 true false 값
 			return this.$store.getters.isLogin;
+		},
+		logoLink() {
+			return this.$store.getters.isLogin ? '/' : '/login';
 		},
 	},
 	methods: {
