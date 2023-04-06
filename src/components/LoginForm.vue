@@ -5,7 +5,7 @@
 			<div class="row-item">
 				<label for="user-name">ID</label>
 				<input id="user-name" type="name" placeholder="아이디를 입력 해주세요." v-model="id" />
-				<p v-if="!useremailValid && id.length > 0" class="warning">이메일 형식이 아닙니다.</p>
+				<p v-if="!useremailValid && id" class="warning">이메일 형식이 아닙니다.</p>
 			</div>
 			<div class="row-item">
 				<label for="user-password">PW</label>
